@@ -42,14 +42,25 @@
 
     (:action visitar_seguent_ciutat
         :parameters (?v - vol ?c1 - ciutat ?c2 - ciutat ?h - hotel ?r - numDies)
-        :precondition (and (uneix ?v ?c1 ?c2) (pertany ?h ?c2) (ultima_ciutat ?c1) (not (visitada ?c2)))
-        :effect (and (not (ultima_ciutat ?c1)) (ultima_ciutat ?c2) (visitada ?c2) (increase (ciutats_visitades) 1) (increase (dies_totals_visitats) (num ?r)))
+        :precondition (and (uneix ?v ?c1 ?c2) 
+                        (pertany ?h ?c2) 
+                        (ultima_ciutat ?c1) 
+                        (not (visitada ?c2)))
+        :effect (and (not (ultima_ciutat ?c1)) 
+                        (ultima_ciutat ?c2) 
+                        (visitada ?c2) 
+                        (increase (ciutats_visitades) 1) 
+                        (increase (dies_totals_visitats) (num ?r)))
     )
 
     (:action acabar
         :parameters (?v - vol ?c1 - ciutat ?c2 - ciutat)
-        :precondition (and (uneix ?v ?c1 ?c2) (ultima_ciutat ?c1) (ciutat_inicial ?c2) (<= (ciutats_a_visitar) (ciutats_visitades)) (>= (dies_totals_visitats) (min_dies_viatge)))
-        :effect (and (not (ultima_ciutat ?c1)) (not (ciutat_inicial ?c2)) (acaba))
+        :precondition (and (uneix ?v ?c1 ?c2) 
+                        (ultima_ciutat ?c1) 
+                        (ciutat_inicial ?c2) 
+                        (<= (ciutats_a_visitar) (ciutats_visitades)) 
+                        (>= (dies_totals_visitats) (min_dies_viatge)))
+        :effect (acaba)
     )
 
 )
