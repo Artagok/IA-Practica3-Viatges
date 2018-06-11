@@ -1,6 +1,6 @@
 (define (domain viatge)
     (:requirements :strips :fluents :typing :adl)
-    (:types vol ciutat hotel - object)
+    (:types vol ciutat hotel numDies - object)
 
     (:predicates
         (uneix ?v - vol ?c1 - ciutat ?c2 - ciutat)
@@ -12,7 +12,7 @@
     )
 
     (:functions
-        (numDies ?x - ciutat)
+        (num ?x - numDies)
         (dies_totals_visitats)
         (min_dies_viatge)
         (ciutats_a_visitar)
@@ -26,20 +26,20 @@
     )
 
     (:action visitar_primera_ciutat
-        :parameters (?v - vol  ?c1 - ciutat ?c2 - ciutat ?h - hotel)
+        :parameters (?v - vol  ?c1 - ciutat ?c2 - ciutat ?h - hotel ?r - numDies)
         :precondition (and (uneix ?v ?c1 ?c2) (pertany ?h ?c2) (ciutat_inicial ?c1) (not (exists (?y - ciutat) (ciutat_final ?y))))
-        :effect (and (ciutat_final ?c2) (visitada ?c2) (increase (ciutats_visitades) 1) (increase (dies_totals_visitats) (numDies ?c2)))
+        :effect (and (ciutat_final ?c2) (visitada ?c2) (increase (ciutats_visitades) 1) (increase (dies_totals_visitats) (num ?r)))
     )
 
     (:action visitar_seguent_ciutat
-        :parameters (?v - vol ?c1 - ciutat ?c2 - ciutat ?h - hotel)
+        :parameters (?v - vol ?c1 - ciutat ?c2 - ciutat ?h - hotel ?r - numDies)
         :precondition (and (uneix ?v ?c1 ?c2) (pertany ?h ?c2) (ciutat_final ?c1) (not (visitada ?c2)))
-        :effect (and (not (ciutat_final ?c1)) (ciutat_final ?c2) (visitada ?c2) (increase (ciutats_visitades) 1) (increase (dies_totals_visitats) (numDies ?c2)))
+        :effect (and (not (ciutat_final ?c1)) (ciutat_final ?c2) (visitada ?c2) (increase (ciutats_visitades) 1) (increase (dies_totals_visitats) (num ?r)))
     )
 
     (:action acabar
         :parameters (?v - vol ?c1 - ciutat ?c2 - ciutat)
-        :precondition (and (uneix ?v ?c1 ?c2) (ciutat_final ?c1) (ciutat_inicial ?c2) (<= (ciutats_a_visitar) (ciutats_visitades)) (>= (dies_totals_visitats) (ciutats_a_visitar)))
+        :precondition (and (uneix ?v ?c1 ?c2) (ciutat_final ?c1) (ciutat_inicial ?c2) (<= (ciutats_a_visitar) (ciutats_visitades)) (>= (dies_totals_visitats) (min_dies_viatge)))
         :effect (and (not (ciutat_final ?c1)) (not (ciutat_inicial ?c2)) (acaba))
     )
 
