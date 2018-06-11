@@ -9,7 +9,14 @@
         (= (num un_dia) 1)
         (= (num dos_dies) 2)
         (= (num tres_dies) 3)
-
+        
+        
+        (= (interes c1) 1)
+        (= (interes c2) 2)
+        (= (interes c3) 3)
+        (= (interes c4) 2)
+        (= (interes c5) 1)
+        
 
         (pertany h1 c1)
         (pertany h2 c1)
