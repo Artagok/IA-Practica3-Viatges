@@ -63,9 +63,7 @@
                     (ciutat_inicial ?c2) 
                     (<= (ciutats_a_visitar) (ciutats_visitades)) 
                     (>= (dies_totals_visitats) (min_dies_viatge)))
-        :effect (and (not (ultima_ciutat ?c1)) 
-                    (not (ciutat_inicial ?c2)) 
-                    (acaba))
+        :effect (acaba)
     )
 
 )
