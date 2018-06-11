@@ -89,7 +89,7 @@
 
         (= (ciutats_a_visitar) 4)
         (= (ciutats_visitades) 0)
-        (= (dies_totals_visitats) 0)
+        (= (dies_actual_viatge) 0)
         (= (min_dies_viatge) 4)
         (= (preuTotalViatge) 0)
         (= (preuMinimViatge) 1800)

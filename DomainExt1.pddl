@@ -13,7 +13,7 @@
 
     (:functions
         (num ?x - numDies)
-        (dies_totals_visitats)
+        (dies_actual_viatge)
         (min_dies_viatge)
         (ciutats_a_visitar)
         (ciutats_visitades)
@@ -37,7 +37,7 @@
         :effect (and (ultima_ciutat ?c2) 
                     (visitada ?c2) 
                     (increase (ciutats_visitades) 1) 
-                    (increase (dies_totals_visitats) (num ?r)))
+                    (increase (dies_actual_viatge) (num ?r)))
     )
 
     (:action visitar_seguent_ciutat
@@ -50,7 +50,7 @@
                         (ultima_ciutat ?c2) 
                         (visitada ?c2) 
                         (increase (ciutats_visitades) 1) 
-                        (increase (dies_totals_visitats) (num ?r)))
+                        (increase (dies_actual_viatge) (num ?r)))
     )
 
     (:action acabar
@@ -59,7 +59,7 @@
                         (ultima_ciutat ?c1) 
                         (ciutat_inicial ?c2) 
                         (<= (ciutats_a_visitar) (ciutats_visitades)) 
-                        (>= (dies_totals_visitats) (min_dies_viatge)))
+                        (>= (dies_actual_viatge) (min_dies_viatge)))
         :effect (acaba)
     )
 

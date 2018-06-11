@@ -49,7 +49,7 @@
 
         (= (ciutats_a_visitar) 2)
         (= (ciutats_visitades) 0)
-        (= (dies_totals_visitats) 0)
+        (= (dies_actual_viatge) 0)
         (= (min_dies_viatge) 4)
     )
 
