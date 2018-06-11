@@ -102,6 +102,7 @@
          (acaba)
     )
 
-    (:metric minimize (+ (preuTotalViatge) (interes_viatge)))
+    (:metric minimize (+ (* 2 (preuTotalViatge)) (* (/ (+ (preuMinimViatge) (preuMaximViatge)) 2) (interes_viatge))))
 
+    ;;;;;; mitjanaInteressos * PreuViatge + mitjanaPreu * InteresViatge ;;;;;;
 )
